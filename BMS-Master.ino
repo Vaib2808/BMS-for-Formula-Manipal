@@ -48,8 +48,3 @@ QueueHandle_t canQueue;
 //        }
           }
 }
-
-////    if (xHigherPriorityTaskWoken != pdFALSE) {
-////        portYIELD_FROM_ISR();
-////    }
-//}
