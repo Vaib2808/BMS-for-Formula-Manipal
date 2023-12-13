@@ -2,6 +2,14 @@
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
 #include <semphr.h>
+#include <Arduino.h>
+#include <stdint.h>
+#include <SPI.h>
+#include "Linduino.h"
+#include "LT_SPI.h"
+#include "UserInterface.h"
+#include "LTC681x.h"
+#include "LTC6813.h"
 
 FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can1;
 CAN_message_t msg;
