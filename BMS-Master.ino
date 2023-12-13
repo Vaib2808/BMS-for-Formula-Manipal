@@ -11,6 +11,12 @@
 #include "LTC681x.h"
 #include "LTC6813.h"
 
+#define ENABLED 1
+#define DISABLED 0
+#define DATALOG_ENABLED 1
+#define DATALOG_DISABLED 0
+#define PWM 1
+#define SCTL 2
 FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can1;
 CAN_message_t msg;
 CAN_message_t receivedMsg;
