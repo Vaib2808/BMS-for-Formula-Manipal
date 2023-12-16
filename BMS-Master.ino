@@ -30,7 +30,7 @@ bool adcValueReady = false;
 QueueHandle_t canQueue;
 
 
-const uint8_t TOTAL_IC = 6;//!< Number of ICs in the daisy chain
+const uint8_t TOTAL_IC = 5;//!< Number of ICs in the daisy chain
 
 /********************************************************************
  ADC Command Configurations. See LTC681x.h for options
