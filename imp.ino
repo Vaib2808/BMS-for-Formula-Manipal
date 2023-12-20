@@ -1,30 +1,4 @@
-    case 1: // Write and read Configuration Register
-      wakeup_sleep(TOTAL_IC);
-      LTC6813_wrcfg(TOTAL_IC,BMS_IC); // Write into Configuration Register
-      LTC6813_wrcfgb(TOTAL_IC,BMS_IC); // Write into Configuration Register B
-      print_wrconfig();
-      print_wrconfigb();
-      
-      wakeup_idle(TOTAL_IC);
-      error = LTC6813_rdcfg(TOTAL_IC,BMS_IC); // Read Configuration Register
-      check_error(error);
-      error = LTC6813_rdcfgb(TOTAL_IC,BMS_IC); // Read Configuration Register B
-      check_error(error);
-      print_rxconfig();
-      print_rxconfigb();
-      break;
-
-    case 2: // Read Configuration Register
-      wakeup_sleep(TOTAL_IC);
-      error = LTC6813_rdcfg(TOTAL_IC,BMS_IC);
-      check_error(error);
-      error = LTC6813_rdcfgb(TOTAL_IC,BMS_IC);
-      check_error(error);
-      print_rxconfig();
-      print_rxconfigb();
-      break;
-      
-    case 3: // Start Cell ADC Measurement
+   case 3: // Start Cell ADC Measurement
       wakeup_sleep(TOTAL_IC);
       LTC6813_adcv(ADC_CONVERSION_MODE,ADC_DCP,CELL_CH_TO_CONVERT);
       conv_time = LTC6813_pollAdc();
