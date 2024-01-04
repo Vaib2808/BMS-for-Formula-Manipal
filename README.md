@@ -1,6 +1,6 @@
 # Real Time BMS-for-Formula-Manipal
 
-***This work is the continuation of intial work on BMS done by ECS Senior at Formula Manipal***
+***This work is the continuation of intial work on BMS done by ECS Seniors at Formula Manipal***
 
 BMS is responsible for monitoring, controlling, and optimizing the performance, safety, and
 longevity of the Accumulator.
