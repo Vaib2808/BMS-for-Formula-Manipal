@@ -38,16 +38,3 @@ void print_cells(uint8_t datalog_en)
   Serial.println("\n");
 
 
-void print_sumofcells(void)
-{
-  for (int current_ic =0 ; current_ic < TOTAL_IC; current_ic++)
-  {
-    Serial.print(F(" IC "));
-    Serial.print(current_ic+1,DEC);
-    Serial.print(F(" SOC:"));
-    Serial.print(BMS_IC[current_ic].stat.stat_codes[0]*0.0001*30,4);
-    Serial.print(F(","));
-  }
-  Serial.println("\n");
-}
-
