@@ -49,3 +49,35 @@ void print_cells_over_CAN(uint8_t datalog_en) {
     }
   }
 }
+
+
+void print_cells(uint8_t datalog_en)
+{
+  for (int current_ic = 0 ; current_ic < TOTAL_IC; current_ic++)
+  {
+    if (datalog_en == 0)
+    {
+      Serial.print(" IC ");
+      Serial.print(current_ic+1,DEC);
+      Serial.print(", ");
+      for (int i=0; i<BMS_IC[0].ic_reg.cell_channels; i++)
+      {
+        Serial.print(" C");
+        Serial.print(i+1,DEC);
+        Serial.print(":");
+        Serial.print(BMS_IC[current_ic].cells.c_codes[i]*0.0001,4);
+        Serial.print(",");
+      }
+      Serial.println();
+    }
+    else
+    {
+      Serial.print(" Cells, ");
+      for (int i=0; i<BMS_IC[0].ic_reg.cell_channels; i++)
+      {
+        Serial.print(BMS_IC[current_ic].cells.c_codes[i]*0.0001,4);
+        Serial.print(",");
+      }
+    }
+  }
+  Serial.println("\n");
