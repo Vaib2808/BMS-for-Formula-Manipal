@@ -1,10 +1,4 @@
-   case 3: // Start Cell ADC Measurement
-      wakeup_sleep(TOTAL_IC);
-      LTC6813_adcv(ADC_CONVERSION_MODE,ADC_DCP,CELL_CH_TO_CONVERT);
-      conv_time = LTC6813_pollAdc();
-      print_conv_time(conv_time);
-      break;
-    
+
     case 4: // Read Cell Voltage Registers
       wakeup_sleep(TOTAL_IC);
       error = LTC6813_rdcv(SEL_ALL_REG,TOTAL_IC,BMS_IC); // Set to read back all cell voltage registers 
