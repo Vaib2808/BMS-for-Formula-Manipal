@@ -78,7 +78,7 @@ void canint(const CAN_message_t &receivedMsg) {
           }
 }
 
-void print_cells_over_CAN(uint8_t datalog_en) {
+void print_cells(uint8_t datalog_en) {
   CAN_message_t msg;
 
   for (int current_ic = 0; current_ic < TOTAL_IC; current_ic++) {
