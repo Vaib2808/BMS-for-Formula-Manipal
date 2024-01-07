@@ -2,6 +2,12 @@
 
 FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can1;
 CAN_message_t msg;
+CAN_message_t receivedMsg;
+char buf[40];
+String checks;
+int8_t  dataTherm[10];
+int value1, adcValue;
+unsigned long value3;
 
 
 
