@@ -111,3 +111,10 @@ void print_cells(uint8_t datalog_en) {
   }
 }
 
+void check_error(int error)
+{
+  if (error == -1)
+  {
+    Serial.println(F("A PEC error was detected in the received data"));
+  }
+}
