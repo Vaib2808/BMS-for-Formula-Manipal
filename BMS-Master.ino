@@ -84,9 +84,9 @@ void print_cells(uint8_t datalog_en) {
   for (int current_ic = 0; current_ic < TOTAL_IC; current_ic++) {
     if (datalog_en == 0) {
       msg.id = 0x100 + current_ic;
-      msg.len = BMS_IC[0].ic_reg.cell_channels * 4;
+      msg.len = BMS_IC[current_ic].ic_reg.cell_channels * 4;
 
-      for (int i = 0; i < BMS_IC[0].ic_reg.cell_channels; i++) {
+      for (int i = 0; i < BMS_IC[current_ic].ic_reg.cell_channels; i++) {
         float cellVoltage = BMS_IC[current_ic].cells.c_codes[i] * 0.0001;
         memcpy(&msg.buf[i * 4], &cellVoltage, sizeof(cellVoltage));
       }
@@ -94,11 +94,11 @@ void print_cells(uint8_t datalog_en) {
       canBus.write(msg);
     } else {
       msg.id = 0x200; // Example ID for summary data
-      msg.len = TOTAL_IC * BMS_IC[0].ic_reg.cell_channels * 4;
+      msg.len = TOTAL_IC * BMS_IC[current_ic].ic_reg.cell_channels * 4;
 
       int index = 0;
       for (int ic = 0; ic < TOTAL_IC; ic++) {
-        for (int i = 0; i < BMS_IC[0].ic_reg.cell_channels; i++) {
+        for (int i = 0; i < BMS_IC[ic].ic_reg.cell_channels; i++) {
           float cellVoltage = BMS_IC[ic].cells.c_codes[i] * 0.0001;
           memcpy(&msg.buf[index], &cellVoltage, sizeof(cellVoltage));
           index += 4;
@@ -106,10 +106,10 @@ void print_cells(uint8_t datalog_en) {
       }
 
       canBus.write(msg);
-      break; 
     }
   }
 }
+
 
 void check_error(int error)
 {
