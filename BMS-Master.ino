@@ -50,6 +50,20 @@ const uint8_t MEASURE_CELL = ENABLED; //!< This is to ENABLED or DISABLED measur
 const uint8_t MEASURE_AUX = DISABLED; //!< This is to ENABLED or DISABLED reading the auxiliary registers in a continuous loop
 const uint8_t MEASURE_STAT = DISABLED; //!< This is to ENABLED or DISABLED reading the status registers in a continuous loop
 const uint8_t PRINT_PEC = DISABLED; //!< This is to ENABLED or DISABLED printing the PEC Error Count in a continuous loop
+cell_asic BMS_IC[TOTAL_IC]; //!< Global Battery Variable
+bool REFON = true; //!< Reference Powered Up Bit
+bool ADCOPT = false; //!< ADC Mode option bit
+bool GPIOBITS_A[5] = {false,false,true,true,true}; //!< GPIO Pin Control // Gpio 1,2,3,4,5
+bool GPIOBITS_B[4] = {false,false,false,false}; //!< GPIO Pin Control // Gpio 6,7,8,9
+uint16_t UV=UV_THRESHOLD; //!< Under voltage Comparison Voltage
+uint16_t OV=OV_THRESHOLD; //!< Over voltage Comparison Voltage
+bool DCCBITS_A[12] = {false,false,false,false,false,false,false,false,false,false,false,false}; //!< Discharge cell switch //Dcc 1,2,3,4,5,6,7,8,9,10,11,12
+bool DCCBITS_B[7]= {false,false,false,false,false,false,false}; //!< Discharge cell switch //Dcc 0,13,14,15
+bool DCTOBITS[4] = {true,false,true,false}; //!< Discharge time value //Dcto 0,1,2,3  // Programed for 4 min 
+/*Ensure that Dcto bits are set according to the required discharge time. Refer to the data sheet */
+bool FDRF = false; //!< Force Digital Redundancy Failure Bit
+bool DTMEN = true; //!< Enable Discharge Timer Monitor
+bool PSBITS[2]= {false,false}; //!< Digital Redundancy Path Selection//ps-0,1
 
 
 
