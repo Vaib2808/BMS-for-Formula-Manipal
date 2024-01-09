@@ -23,8 +23,8 @@ int value1, adcValue;
 unsigned long value3;
 const uint8_t TOTAL_IC = 4;//!< Number of ICs in the daisy chain
 //Under Voltage and Over Voltage Thresholds
-const uint16_t OV_THRESHOLD = 41000; //!< Over voltage threshold ADC Code. LSB = 0.0001 ---(4.1V)
-const uint16_t UV_THRESHOLD = 30000; //!< Under voltage threshold ADC Code. LSB = 0.0001 ---(3V)
+const uint16_t OV_THRESHOLD = 42000; //!< Over voltage threshold ADC Code. LSB = 0.0001 ---(4.1V)
+const uint16_t UV_THRESHOLD = 25000; //!< Under voltage threshold ADC Code. LSB = 0.0001 ---(3V)
 const uint8_t MEASURE_CELL = ENABLED
 cell_asic BMS_IC[TOTAL_IC];
 uint16_t UV=UV_THRESHOLD; //!< Under voltage Comparison Voltage
