@@ -27,7 +27,7 @@ unsigned long value3;
 int8_t select_s_pin(void);
 char read_hex(void); 
 char get_char(void);
-const uint8_t TOTAL_IC = 2;//!< Number of ICs in the daisy chain
+const uint8_t TOTAL_IC = 4;//!< Number of ICs in the daisy chain
 const uint8_t ADC_OPT = ADC_OPT_DISABLED; //!< ADC Mode option bit
 const uint8_t ADC_CONVERSION_MODE =MD_7KHZ_3KHZ; //!< ADC Mode
 const uint8_t ADC_DCP = DCP_DISABLED; //!< Discharge Permitted 
