@@ -33,6 +33,10 @@ uint16_t OV=OV_THRESHOLD; //!< Over voltage Comparison Voltage
 
 void setup()
 {
+  can1.begin();
+  can1.setBaudRate(250000);
+  can2.begin();
+  can2.setBaudRate(250000);
   Serial.begin(115200);
   quikeval_SPI_connect();
   spi_enable(SPI_CLOCK_DIV16); // This will set the Linduino to have a 1MHz Clock
