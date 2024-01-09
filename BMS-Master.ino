@@ -9,7 +9,12 @@ String checks;
 int8_t  dataTherm[10];
 int value1, adcValue;
 unsigned long value3;
-
+#define ENABLED 1
+#define DISABLED 0
+#define DATALOG_ENABLED 1
+#define DATALOG_DISABLED 0
+#define PWM 1
+#define SCTL 2
 
 
 void setup()
