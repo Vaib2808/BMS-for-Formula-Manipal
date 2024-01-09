@@ -1,4 +1,13 @@
 #include <FlexCAN_T4.h>
+#include <Arduino.h>
+#include <stdint.h>
+#include <SPI.h>
+#include "Linduino.h"
+#include "LT_SPI.h"
+#include "UserInterface.h"
+#include "LTC681x.h"
+#include "LTC6813.h"
+
 
 FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can1;
 FlexCAN_T4<CAN2, RX_SIZE_256, TX_SIZE_16> can2;
@@ -15,6 +24,33 @@ unsigned long value3;
 #define DATALOG_DISABLED 0
 #define PWM 1
 #define SCTL 2
+int8_t select_s_pin(void);
+char read_hex(void); 
+char get_char(void);
+const uint8_t TOTAL_IC = 2;//!< Number of ICs in the daisy chain
+const uint8_t ADC_OPT = ADC_OPT_DISABLED; //!< ADC Mode option bit
+const uint8_t ADC_CONVERSION_MODE =MD_7KHZ_3KHZ; //!< ADC Mode
+const uint8_t ADC_DCP = DCP_DISABLED; //!< Discharge Permitted 
+const uint8_t CELL_CH_TO_CONVERT =CELL_CH_ALL; //!< Channel Selection for ADC conversion
+const uint8_t AUX_CH_TO_CONVERT = AUX_CH_ALL; //!< Channel Selection for ADC conversion
+const uint8_t STAT_CH_TO_CONVERT = STAT_CH_ALL; //!< Channel Selection for ADC conversion
+const uint8_t SEL_ALL_REG = REG_ALL; //!< Register Selection 
+const uint8_t SEL_REG_A = REG_1; //!< Register Selection 
+const uint8_t SEL_REG_B = REG_2; //!< Register Selection 
+const uint16_t MEASUREMENT_LOOP_TIME = 500; //!< Loop Time in milliseconds(ms)
+
+//Under Voltage and Over Voltage Thresholds
+const uint16_t OV_THRESHOLD = 41000; //!< Over voltage threshold ADC Code. LSB = 0.0001 ---(4.1V)
+const uint16_t UV_THRESHOLD = 30000; //!< Under voltage threshold ADC Code. LSB = 0.0001 ---(3V)
+
+//Loop Measurement Setup. These Variables are ENABLED or DISABLED. Remember ALL CAPS
+const uint8_t WRITE_CONFIG = DISABLED;  //!< This is to ENABLED or DISABLED writing into to configuration registers in a continuous loop
+const uint8_t READ_CONFIG = DISABLED; //!< This is to ENABLED or DISABLED reading the configuration registers in a continuous loop
+const uint8_t MEASURE_CELL = ENABLED; //!< This is to ENABLED or DISABLED measuring the cell voltages in a continuous loop
+const uint8_t MEASURE_AUX = DISABLED; //!< This is to ENABLED or DISABLED reading the auxiliary registers in a continuous loop
+const uint8_t MEASURE_STAT = DISABLED; //!< This is to ENABLED or DISABLED reading the status registers in a continuous loop
+const uint8_t PRINT_PEC = DISABLED; //!< This is to ENABLED or DISABLED printing the PEC Error Count in a continuous loop
+
 
 
 void setup()
