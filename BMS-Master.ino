@@ -53,14 +53,16 @@ void setup()
 }
 
 void loop() {
-            int8_t error = 0;
-            wakeup_sleep(TOTAL_IC);
-            error = LTC6813_rdcv(SEL_ALL_REG, TOTAL_IC, BMS_IC);
-            check_error(error); 
-            print_cells(DATALOG_DISABLED);
-            print_cells(DATALOG_ENABLED);
-            canint(receivedMsg);
-            delay(1000);
+  int8_t error = 0;
+  wakeup_sleep(TOTAL_IC);
+  error = LTC6813_rdcv(SEL_ALL_REG, TOTAL_IC, BMS_IC);
+  LTC6813_wrcfg(TOTAL_IC,BMS_IC); // Write into Configuration Register
+  LTC6813_wrcfgb(TOTAL_IC,BMS_IC); // Write into Configuration Register B
+  check_error(error); 
+  print_cells(DATALOG_DISABLED);
+  print_cells(DATALOG_ENABLED);
+  canint(receivedMsg);
+  delay(1000);
 }
 
 
