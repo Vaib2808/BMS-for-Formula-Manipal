@@ -1,41 +1,5 @@
 #include <FlexCAN_T4.h>
-#include <Arduino.h>
-#include <stdint.h>
-#include <SPI.h>
-#include "Linduino.h"
-#include "LT_SPI.h"
-#include "UserInterface.h"
-#include "LTC681x.h"
-#include "LTC6813.h"
 
-#define ENABLED 1
-#define DISABLED 0
-#define DATALOG_ENABLED 1
-#define DATALOG_DISABLED 0
-#define PWM 1
-#define SCTL 2
-const uint8_t SEL_ALL_REG = REG_ALL; //!< Register Selection 
-const uint8_t SEL_REG_A = REG_1; //!< Register Selection 
-const uint8_t SEL_REG_B = REG_2; //!< Register Selection 
-const uint8_t WRITE_CONFIG = DISABLED;  //!< This is to ENABLED or DISABLED writing into to configuration registers in a continuous loop
-const uint8_t READ_CONFIG = DISABLED; //!< This is to ENABLED or DISABLED reading the configuration registers in a continuous loop
-const uint8_t MEASURE_CELL = ENABLED; //!< This is to ENABLED or DISABLED measuring the cell voltages in a continuous loop
-const uint8_t MEASURE_AUX = DISABLED; //!< This is to ENABLED or DISABLED reading the auxiliary registers in a continuous loop
-const uint8_t MEASURE_STAT = DISABLED; //!< This is to ENABLED or DISABLED reading the status registers in a continuous loop
-const uint8_t PRINT_PEC = DISABLED; //!< This is to ENABLED or DISABLED printing the PEC Error Count in a continuous loop
-bool REFON = true; //!< Reference Powered Up Bit
-bool ADCOPT = false; //!< ADC Mode option bit
-bool GPIOBITS_A[5] = {false,false,true,true,true}; //!< GPIO Pin Control // Gpio 1,2,3,4,5
-bool GPIOBITS_B[4] = {false,false,false,false}; //!< GPIO Pin Control // Gpio 6,7,8,9
-uint16_t UV=UV_THRESHOLD; //!< Under voltage Comparison Voltage
-uint16_t OV=OV_THRESHOLD; //!< Over voltage Comparison Voltage
-bool DCCBITS_A[12] = {false,false,false,false,false,false,false,false,false,false,false,false}; //!< Discharge cell switch //Dcc 1,2,3,4,5,6,7,8,9,10,11,12
-bool DCCBITS_B[7]= {false,false,false,false,false,false,false}; //!< Discharge cell switch //Dcc 0,13,14,15
-bool DCTOBITS[4] = {true,false,true,false}; //!< Discharge time value //Dcto 0,1,2,3  // Programed for 4 min 
-/*Ensure that Dcto bits are set according to the required discharge time. Refer to the data sheet */
-bool FDRF = false; //!< Force Digital Redundancy Failure Bit
-bool DTMEN = true; //!< Enable Discharge Timer Monitor
-bool PSBITS[2]= {false,false}; //!< Digital Redundancy Path Selection//ps-0,1
 FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can1;
 FlexCAN_T4<CAN2, RX_SIZE_256, TX_SIZE_16> can2;
 CAN_message_t msg;
@@ -45,14 +9,7 @@ String checks;
 int8_t  dataTherm[10];
 int value1, adcValue;
 unsigned long value3;
-const uint8_t TOTAL_IC = 4;//!< Number of ICs in the daisy chain
-//Under Voltage and Over Voltage Thresholds
-const uint16_t OV_THRESHOLD = 42000; //!< Over voltage threshold ADC Code. LSB = 0.0001 ---(4.1V)
-const uint16_t UV_THRESHOLD = 25000; //!< Under voltage threshold ADC Code. LSB = 0.0001 ---(3V)
-const uint8_t MEASURE_CELL = ENABLED;
-cell_asic BMS_IC[TOTAL_IC];
-uint16_t UV=UV_THRESHOLD; //!< Under voltage Comparison Voltage
-uint16_t OV=OV_THRESHOLD; //!< Over voltage Comparison Voltage
+
 
 
 void setup()
